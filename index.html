@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokédex</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/standard.css" />
+    <link rel="stylesheet" href="styles/assets.css" />
+    <link rel="stylesheet" href="styles/overlay.css" />
+    <link rel="stylesheet" href="styles/colors.css">
+    <link
+      rel="shortcut icon"
+      href="assets/favicon/favicon.png"
+      type="image/x-icon"
+    />
+    <script defer src="scripts/db.js"></script>
+    <script defer src="scripts/template.js"></script>
+    <script defer src="scripts/script.js"></script>
+    <script defer src="scripts/modal.js"></script>
+    <script defer src="scripts/loadEvo.js"></script>
+    <script defer src="scripts/loading.js"></script>
+    <script defer src="scripts/loadMorePokemon.js"></script>
+  </head>
+  <body onload="init()">
+    <header class="header">
+      <div class="header-content">
+        <img src="assets/img/logo.svg" alt="Logo" class="logo" />
+        <input type="text" id="search" placeholder="Pokémon suchen..." />
+      </div>
+    </header>
+
+    <div id="loading" class="d_none">Lädt...</div>
+    <div id="pokemon-container"></div>
+
+    <div id="overlay"></div>
+
+    <div class="buttons">
+      <button id="load-more" class="load-more" onclick="handleLoadMore()">
+        Mehr laden
+      </button>
+    </div>
+  </body>
+</html>
