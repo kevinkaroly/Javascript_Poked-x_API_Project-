@@ -3,7 +3,6 @@ async function openModal(pokemonId) {
   if (!pokemon) return;
 
   let evoChain = await loadEvolutionChain(pokemon);
-
   let modalHTML = createModalHTML(pokemon, evoChain);
 
   setOverlayHTML(modalHTML);
@@ -19,13 +18,7 @@ function createModalHTML(pokemon, evoChain) {
   let statsTab = getStatsTabTemplate(pokemon);
   let evoTab = getEvolutionTabTemplate(evoChain);
 
-  let modalHTML = getPokemonModalTabsTemplate(
-    pokemon,
-    mainTab,
-    statsTab,
-    evoTab
-  );
-  return modalHTML;
+  return getPokemonModalTabsTemplate(pokemon, mainTab, statsTab, evoTab);
 }
 
 function setOverlayHTML(html) {
@@ -40,7 +33,6 @@ function showOverlayAsFlex() {
 
 function closeModal() {
   overlay.innerHTML = "";
-
   overlay.classList.remove("d_flex");
   overlay.classList.remove("d_block");
   overlay.classList.add("d_none");

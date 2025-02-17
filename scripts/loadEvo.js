@@ -8,15 +8,13 @@ async function loadEvolutionChain(pokemon) {
 async function loadPokemonSpecies(pokemonId) {
   let speciesUrl = `${BASE_URL}pokemon-species/${pokemonId}`;
   let response = await fetch(speciesUrl);
-  let speciesData = await response.json();
-  return speciesData;
+  return await response.json();
 }
 
 async function loadEvoData(speciesData) {
   let evoUrl = speciesData.evolution_chain.url;
   let response = await fetch(evoUrl);
-  let evoData = await response.json();
-  return evoData;
+  return await response.json();
 }
 
 function parseChainObject(chainObj, chainArray) {

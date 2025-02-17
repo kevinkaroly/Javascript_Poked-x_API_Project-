@@ -19,6 +19,7 @@ function getTypeClass(pokemon) {
   if (pokemon.types.length > 0) {
     return `type-${pokemon.types[0]}`;
   }
+  return "type-normal";
 }
 
 function renderPokemonCard(pokemon) {
@@ -28,7 +29,10 @@ function renderPokemonCard(pokemon) {
 function previousPokemon() {
   console.log("previousPokemon() clicked - not yet implemented");
 }
-
 function nextPokemon() {
   console.log("nextPokemon() clicked - not yet implemented");
+}
+
+function getPokemonByName(name) {
+  return allPokemon.find((p) => p.name.toLowerCase() === name.toLowerCase());
 }
