@@ -25,3 +25,35 @@ function parseChainObject(chainObj, chainArray) {
   }
   return chainArray;
 }
+
+function buildEvoItemHTML(pokemonData) {
+  if (!pokemonData) {
+    return buildEvoItemFallbackHTML();
+  }
+  return buildEvoItemWithHover(pokemonData);
+}
+
+function buildEvoChainHTML(evoChain) {
+  let evoTabTemp = "";
+
+  for (let i = 0; i < evoChain.length; i++) {
+    if (i > 0) {
+      evoTabTemp += `<span class="arrow">→</span>`;
+    }
+
+    let name = evoChain[i];
+    let pokemonData = getPokemonByName(name);
+    evoTabTemp += buildEvoItemHTML(pokemonData);
+  }
+
+  return evoTabTemp;
+}
+
+function animateProgressBars() {
+  let bars = document.querySelectorAll(".progress-fill");
+
+  for (let i = 0; i < bars.length; i++) {
+    let width = bars[i].getAttribute("data-width");
+    bars[i].style.width = width + "%";
+  }
+}

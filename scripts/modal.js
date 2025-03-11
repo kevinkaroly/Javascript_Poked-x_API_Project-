@@ -1,5 +1,8 @@
 async function openModal(pokemonId) {
-  let pokemon = getPokemonById(pokemonId);
+  currentPokemonIndex = allPokemon.findIndex((p) => p.id === pokemonId);
+  if (currentPokemonIndex === -1) return;
+
+  let pokemon = allPokemon[currentPokemonIndex];
   if (!pokemon) return;
 
   let evoChain = await loadEvolutionChain(pokemon);

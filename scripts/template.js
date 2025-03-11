@@ -1,15 +1,23 @@
 function getPokemonCardTemplate(pokemon) {
   let typeClass = getTypeClass(pokemon);
   return `
-    <div class="pokemon-card" onclick="openModal(${pokemon.id})">
+    <div 
+      class="pokemon-card"
+      onclick="openModal(${pokemon.id})"
+      onmouseover="this.querySelector('img').src='${pokemon.imageArtwork}'"
+      onmouseout="this.querySelector('img').src='${pokemon.imageDream}'"
+    >
       <div class="pokemon-card-header">
-        <h3>${pokemon.name} (#${pokemon.id})</h3>
+        <h2>${pokemon.name} (#${pokemon.id})</h2>
       </div>
       <div class="pokemon-card-img ${typeClass}">
-        <img src="${pokemon.image}" alt="${pokemon.name}">
+        <img 
+          src="${pokemon.imageDream}" 
+          alt="${pokemon.name}"
+        >
       </div>
       <div class="pokemon-card-type">
-        <p>${pokemon.types.join(", ")}</p>
+        ${getPokemonTypeIcons(pokemon.types)}
       </div>
     </div>
   `;
@@ -20,7 +28,12 @@ function getPokemonModalTabsTemplate(pokemon, mainTab, statsTab, evoTab) {
     <div class="pokemon-modal" onclick="event.stopPropagation()">
       <div class="modal-header">
         <h2>${pokemon.name} (#${pokemon.id})</h2>
-        <img src="${pokemon.image}" alt="${pokemon.name}" />
+        <img 
+  src="${pokemon.imageDream}" 
+  onmouseover="this.src='${pokemon.imageArtwork}'" 
+  onmouseout="this.src='${pokemon.imageDream}'" 
+  alt="${pokemon.name}"
+>
       </div>
 
       <div class="tab-buttons">
@@ -39,10 +52,10 @@ function getPokemonModalTabsTemplate(pokemon, mainTab, statsTab, evoTab) {
         ${evoTab}
       </div>
       
-      <div class="buttons">
-        <button onclick="previousPokemon()">Back</button>
-        <button class="close-btn" onclick="closeModal()">Schließen</button>
-        <button onclick="nextPokemon()">Next</button>
+      <div class="nav-buttons">
+        <button class="nav-btn" onclick="previousPokemon()">Back</button>
+        <button class="close-btn" onclick="closeModal()">Close</button>
+        <button class="nav-btn" onclick="nextPokemon()">Next</button>
       </div>
     </div>
   `;
@@ -73,51 +86,76 @@ function getMainTabTemplate(pokemon) {
 }
 
 function getStatsTabTemplate(pokemon) {
+  setTimeout(animateProgressBars, 2000);
+
   return `
     <h3>Stats</h3>
     <p>HP: ${pokemon.stats[0].base_stat}</p>
     <div class="progress-bar">
-      <div class="progress-fill" style="width: ${pokemon.stats[0].base_stat / 2}%;"></div>
+      <div class="progress-fill" data-width="${
+        pokemon.stats[0].base_stat / 2
+      }"></div>
     </div>
     <p>Attack: ${pokemon.stats[1].base_stat}</p>
     <div class="progress-bar">
-      <div class="progress-fill" style="width: ${pokemon.stats[1].base_stat / 2}%;"></div>
+      <div class="progress-fill" data-width="${
+        pokemon.stats[1].base_stat / 2
+      }"></div>
     </div>
     <p>Defense: ${pokemon.stats[2].base_stat}</p>
     <div class="progress-bar">
-      <div class="progress-fill" style="width: ${pokemon.stats[2].base_stat / 2}%;"></div>
+      <div class="progress-fill" data-width="${
+        pokemon.stats[2].base_stat / 2
+      }"></div>
     </div>
     <p>Special Attack: ${pokemon.stats[3].base_stat}</p>
     <div class="progress-bar">
-      <div class="progress-fill" style="width: ${pokemon.stats[3].base_stat / 2}%;"></div>
+      <div class="progress-fill" data-width="${
+        pokemon.stats[3].base_stat / 2
+      }"></div>
     </div>
     <p>Special Defense: ${pokemon.stats[4].base_stat}</p>
     <div class="progress-bar">
-      <div class="progress-fill" style="width: ${pokemon.stats[4].base_stat / 2}%;"></div>
+      <div class="progress-fill" data-width="${
+        pokemon.stats[4].base_stat / 2
+      }"></div>
     </div>
     <p>Speed: ${pokemon.stats[5].base_stat}</p>
     <div class="progress-bar">
-      <div class="progress-fill" style="width: ${pokemon.stats[5].base_stat / 2}%;"></div>
+      <div class="progress-fill" data-width="${
+        pokemon.stats[5].base_stat / 2
+      }"></div>
     </div>
   `;
 }
 
 function getEvolutionTabTemplate(evoChain) {
-  let htmlFragments = evoChain.map((name) => {
-    let pokemonData = getPokemonByName(name);
-    return `
-      <div class="evo-item">
-        <img src="${pokemonData.image}" alt="${pokemonData.name}">
-        <p>${pokemonData.name}</p>
-      </div>
-    `;
-  });
+  let chainHTML = buildEvoChainHTML(evoChain);
 
-  let chainHTML = htmlFragments.join(`<span class="arrow">→</span>`);
   return `
     <h3>Evolution Chain</h3>
     <div class="evo-chain-container">
       ${chainHTML}
+    </div>
+  `;
+}
+
+function buildEvoItemWithHover(pokemonData) {
+  return `
+    <div class="evo-item"
+      onmouseover="this.querySelector('img').src='${pokemonData.imageArtwork}'"
+      onmouseout="this.querySelector('img').src='${pokemonData.imageDream}'"
+    >
+      <img src="${pokemonData.imageDream}" alt="${pokemonData.name}">
+      <p>${pokemonData.name}</p>
+    </div>
+  `;
+}
+
+function buildEvoItemFallbackHTML() {
+  return `
+    <div class="evo-item">
+      <p>???</p>
     </div>
   `;
 }

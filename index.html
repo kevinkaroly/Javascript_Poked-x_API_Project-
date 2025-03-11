@@ -10,11 +10,17 @@
     <link rel="stylesheet" href="styles/overlay.css" />
     <link rel="stylesheet" href="styles/colors.css" />
     <link rel="stylesheet" href="styles/card.css" />
+    <link rel="stylesheet" href="styles/loading.css" />
     <link
       rel="shortcut icon"
       href="assets/favicon/favicon.png"
       type="image/x-icon"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+
     <script defer src="scripts/db.js"></script>
     <script defer src="scripts/template.js"></script>
     <script defer src="scripts/script.js"></script>
@@ -26,20 +32,107 @@
   <body onload="init()">
     <header class="header">
       <div class="header-content">
-        <img src="assets/img/logo.svg" alt="Logo" class="logo" />
-        <input type="text" id="search" placeholder="Pokémon suchen..." />
+        <a href="index.html"
+          ><img src="assets/img/logo.svg" alt="Logo" class="logo"
+        /></a>
+          <input
+            type="text"
+            id="search"
+            placeholder="&#128270 search Pokémon..."
+            oninput="searchPokemon()"
+          />
       </div>
     </header>
+    <div class="main">
+      <video autoplay muted loop id="background-video">
+        <source
+          src="assets/background/charizard-breathing-fire-pokemon-moewalls-com.mp4"
+          type="video/mp4"
+        />
+        Your Browser doesn't support HTML5-Video's.
+      </video>
+      <div id="pokemon-container"></div>
 
-    <div id="loading" class="d_none">Lädt...</div>
-    <div id="pokemon-container"></div>
+      <div id="overlay"></div>
 
-    <div id="overlay"></div>
-
-    <div class="buttons">
-      <button id="load-more" class="load-more" onclick="handleLoadMore()">
-        Mehr laden
-      </button>
+      <div class="load-button">
+        <button
+          id="load-more"
+          class="pokeball-button d_none"
+          onclick="handleLoadMore()"
+        >
+          <span class="btn-text">Load More</span>
+          <span class="center-circle"></span>
+        </button>
+      </div>
+      <div id="loader-overlay" class="loader-background d_none">
+        <div class="loading-container u-bounce">
+          <img
+            src="assets/img/pokeball.svg"
+            alt="Loading Pokéball"
+            class="loading-pokeball"
+          />
+          <div class="loader"></div>
+        </div>
+      </div>
     </div>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="data-protection">
+          <a href="index.html"
+            ><img src="assets/img/logo.svg" alt="Logo" class="logo footer-logo"
+          /></a>
+        </div>
+        <div class="copyright">
+          <a href="impressum.html" target="_blank" rel="noopener noreferrer"
+            >Impressum</a
+          >
+          <a href="datenschutz.html" target="_blank" rel="noopener noreferrer"
+            >Datenschutz</a
+          >
+          <!-- <p class="copyright">
+            Copyright © Kevin Karoly<br />All Rights Reserved
+          </p> -->
+        </div>
+        <div class="socials">
+          <a
+            href="http://www.facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img
+              class="social-img facebook glow-logo"
+              src="assets/logo/facebook_logo.png"
+              alt="Facebook"
+          /></a>
+          <a
+            href="http://www.instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img
+              class="social-img instagram glow-logo"
+              src="assets/logo/instagrram_logo.png"
+              alt="Instagram"
+          /></a>
+          <a
+            href="http://www.twitter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img
+              class="social-img x glow-logo"
+              src="assets/logo/twitter.png"
+              alt="Twitter"
+          /></a>
+          <a
+            href="http://www.youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img
+              class="social-img youtube glow-logo"
+              src="assets/logo/youtube_icon.png"
+              alt="Youtube"
+          /></a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

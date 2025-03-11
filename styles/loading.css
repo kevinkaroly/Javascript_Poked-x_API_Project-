@@ -1,0 +1,85 @@
+@keyframes bouncePokeball {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes l22 {
+  100% {
+    background-position: left;
+  }
+}
+
+.loader-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-container {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "VT323", monospace;
+}
+
+.loading-pokeball {
+  animation: bouncePokeball 1s linear infinite;
+  margin-bottom: 8px;
+}
+
+.u-bounce {
+  animation: bounce 1000ms infinite;
+  animation-timing-function: cubic-bezier(0, 1.28, 0, 1.27);
+}
+.u-rubber-band {
+  animation: rubberBand 1200ms infinite;
+}
+.loader {
+  color: rgba(255, 255, 255, 0);
+  width: fit-content;
+  font-weight: bold;
+  font-size: 30px;
+  background: linear-gradient(
+      135deg,
+      #ffffff00 calc(50% - 0.5em),
+      #ffcc00 0 calc(50% + 0.5em),
+      #ffffff00 0
+    )
+    right/300% 100%;
+  animation: l22 2s infinite;
+}
+
+.loader::before {
+  content: "Loading...";
+  color: #ffffff;
+  padding: 0 5px;
+  background: inherit;
+  background-image: linear-gradient(
+    135deg,
+    #ffffff calc(50% - 0.5em),
+    #ffffff 0 calc(50% + 0.5em),
+    #ff0000 0
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}

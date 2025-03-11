@@ -1,3 +1,8 @@
+h3 {
+  text-align: center;
+  padding-bottom: 15px;
+}
+
 #overlay {
   display: none;
   position: fixed;
@@ -14,15 +19,16 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 45px;
   background: #1e1f21;
   border-radius: 10px;
-  width: 360px;
+  width: 450px;
   padding: 15px;
-  color: #fff;
+  color: #ffffff;
   position: relative;
   overflow: hidden;
   box-shadow: 4px 4px 50px rgba(0, 0, 0, 0.8);
-  font-family: sans-serif;
+  font-family: "VT323", monospace;
 }
 
 .modal-header {
@@ -32,58 +38,10 @@
   justify-content: center;
 }
 
-.tab-buttons {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.tab-buttons button {
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.tab-content {
-  text-align: left;
-}
-
 .modal-tabs {
   display: flex;
   background: #2a2b2d;
   justify-content: center;
-}
-
-.tab-btn {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  background: #114758;
-  color: #fff;
-  cursor: pointer;
-  text-transform: uppercase;
-}
-
-.tab-btn:hover,
-.tab-btn:focus {
-  background: #3c3d3f;
-}
-
-.tab-btn.active {
-  border-bottom: 2px solid red;
-}
-
-.close-btn {
-  display: block;
-  width: 90%;
-  margin: 0 auto 20px;
-  padding: 10px;
-  border: none;
-  background: red;
-  color: white;
-  text-transform: uppercase;
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 5px;
 }
 
 .main-table {
@@ -93,24 +51,25 @@
 }
 
 .main-table td {
-  padding: 6px 10px;
+  padding: 6px 5px;
   border-bottom: 1px solid #ccc;
 }
 
 .progress-bar {
-  background-color: #5a5959;
-  border-radius: 4px;
-  overflow: hidden;
+  width: 100%;
   height: 10px;
-  margin-top: 3px;
+  background-color: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 8px;
 }
 
 .progress-fill {
-  background-color: #f08030; /* Feuer-Orange */
   height: 100%;
-  transition: width 0.3s ease;
+  width: 0;
+  background: linear-gradient(to right, #ff0000, #ffcc00);
+  transition: width 1s ease-in-out;
 }
-
 
 .evo-chain-container {
   display: flex;
@@ -125,8 +84,8 @@
 }
 
 .evo-item img {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
 }
 
